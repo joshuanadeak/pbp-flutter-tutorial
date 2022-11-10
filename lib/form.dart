@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pbpflutterone/main.dart';
 
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
@@ -38,6 +39,33 @@ class _MyFormPageState extends State<MyFormPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Form'),
+        ),
+        drawer: Drawer(
+          child: Column(
+            children: [
+              // Menambahkan clickable menu
+              ListTile(
+                title: const Text('Counter'),
+                onTap: () {
+                  // Route menu ke halaman utama
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Form'),
+                onTap: () {
+                  // Route menu ke halaman form
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyFormPage()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
         body: Form(
           key: _formKey,
@@ -208,8 +236,8 @@ class _MyFormPageState extends State<MyFormPage> {
                               ),
                               elevation: 15,
                               child: ListView(
-                                padding: const EdgeInsets.only(
-                                    top: 20, bottom: 20),
+                                padding:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
                                 shrinkWrap: true,
                                 children: <Widget>[
                                   const Center(child: Text('Informasi Data')),
@@ -218,7 +246,8 @@ class _MyFormPageState extends State<MyFormPage> {
                                   Text("Jenjang: ${getJenjang()}"),
                                   Text("Umur: $umurInt tahun"),
                                   Text("Kelas: $kelasPBP"),
-                                  Text("Practice Mode: ${_nilaiSwitch ? "enabled" : "disabled"}"),
+                                  Text(
+                                      "Practice Mode: ${_nilaiSwitch ? "enabled" : "disabled"}"),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
